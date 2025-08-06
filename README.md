@@ -6,11 +6,9 @@ A full-stack web application that mimics LinkedIn's core functionality — built
 
 ## 🚀 Live Demo
 
-🌐 **Frontend:** [https://your-frontend-url.vercel.app](https://your-frontend-url.vercel.app)  
-🔗 **Backend API:** [https://your-backend-url.onrender.com](https://your-backend-url.onrender.com)  
-📦 **GitHub Repos:**
-- [Frontend Repository](https://github.com/your-username/linkedin-frontend)
-- [Backend Repository](https://github.com/your-username/linkedin-backend)
+🌐 **Frontend:** [https://your-frontend-url.vercel.app](https://mini-linked-in-platform.vercel.app/)  
+🔗 **Backend API:** [https://your-backend-url.onrender.com](https://mini-linkedin-platform.onrender.com)  
+
 
 ---
 
