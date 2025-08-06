@@ -2,8 +2,8 @@ import React, { useContext, useState } from "react";
 import { UserContext } from "../context/UserContext.jsx";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { toast } from "react-hot-toast"
-import Loader from "../components/Loader.jsx"
+import { toast } from "react-hot-toast";
+import Loader from "../components/Loader.jsx";
 
 const Navbar = () => {
   const { user, setUser, setIsLoggedIn } = useContext(UserContext);
@@ -15,19 +15,18 @@ const Navbar = () => {
 
   const handleLogout = async () => {
     try {
-      setLoading(true)
+      setLoading(true);
       const { data } = await axios.get(URI + "/api/auth/logout", { withCredentials: true });
       if (data.success) {
-
         setUser(null);
         setIsLoggedIn(false);
         toast.success(data.message);
-        navigate("/login")
+        navigate("/login");
       }
     } catch (error) {
-      toast.error(error.response.data.message)
+      toast.error(error.response.data.message);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
   };
 
@@ -36,17 +35,14 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="sticky top-0 z-50 bg-white shadow-lg border-b border-gray-100">
-      {
-        loading && <Loader />
-      }
+    <nav className="sticky top-0 z-50 bg-white shadow-md border-b border-gray-100">
+      {loading && <Loader />}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Left Logo */}
-          <Link to="/" className="flex items-center space-x-2 flex-shrink-0">
-            <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-lg flex items-center justify-center shadow-md">
-              <span className="text-white font-bold text-sm sm:text-base">CC</span>
-            </div>
+          <Link to="/" className="flex items-center space-x-2 flex-shrink-0 transition-transform duration-200 hover:scale-105">
+            {/* The image and h1 tags are unchanged. Consider using a higher-quality SVG for the logo. */}
+            <img src="../../public/linkedin.png" alt="Community Connect Logo" className="w-8 h-8" />
             <h1 className="hidden sm:block text-xl lg:text-2xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
               Community Connect
             </h1>
@@ -96,6 +92,7 @@ const Navbar = () => {
 
                       {/* Menu Items */}
                       <div className="py-2">
+                        {/* Profile Link */}
                         <Link
                           to="/profile"
                           className="flex items-center px-4 py-3 text-sm font-medium text-gray-700 hover:bg-indigo-50 hover:text-indigo-700 transition-colors duration-150"
@@ -105,6 +102,7 @@ const Navbar = () => {
                           </svg>
                           Profile
                         </Link>
+                        {/* Add Post Link */}
                         <Link
                           to="/create-post"
                           className="flex items-center px-4 py-3 text-sm font-medium text-gray-700 hover:bg-indigo-50 hover:text-indigo-700 transition-colors duration-150"
@@ -117,6 +115,7 @@ const Navbar = () => {
                       </div>
 
                       <div className="border-t border-gray-100">
+                        {/* Logout Button */}
                         <button
                           onClick={() => { handleLogout(); setIsMenuOpen(false); }}
                           className="flex items-center w-full px-4 py-3 text-sm font-medium text-red-600 hover:bg-red-50 transition-colors duration-150">

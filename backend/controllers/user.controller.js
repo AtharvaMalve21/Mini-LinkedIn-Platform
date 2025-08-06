@@ -48,33 +48,28 @@ exports.getUserPosts = async (req, res) => {
   }
 };
 
-exports.updateBio = async (req, res) => {
+exports.updateProfile = async (req, res) => {
   try {
     const userId = req.user._id;
-    const { bio } = req.body;
 
-    if (!bio || bio.trim().length === 0) {
-      return res.status(400).json({
-        success: false,
-        message: "Bio cannot be empty.",
-      });
-    }
+    const user = await User.findById(userId);
 
-    const updatedUser = await User.findByIdAndUpdate(
-      userId,
-      { bio },
-      { new: true }
-    ).select("-password");
+    const { name, email, bio } = req.body;
+
+    user.name = name || user.name;
+    user.email = email || user.email;
+    user.bio = bio || user.bio;
+    await user.save();
 
     return res.status(200).json({
       success: true,
-      data: updatedUser,
-      message: "Bio updated successfully.",
+      data:user,
+      message: "User profile updated.",
     });
   } catch (err) {
-    return res.status(500).json({
+    res.status(500).json({
       success: false,
-      message: "Failed to update bio. Please try again.",
+      message: err.message,
     });
   }
 };

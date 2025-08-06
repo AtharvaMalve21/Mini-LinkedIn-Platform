@@ -3,13 +3,13 @@ const router = express.Router();
 const {
   getUserProfile,
   getUserPosts,
-  updateBio,
+  updateProfile,
 } = require("../controllers/user.controller.js");
 
 const { isAuthenticated } = require("../middleware/auth.middleware.js");
 
 router.get("/profile", isAuthenticated, getUserProfile);
 router.get("/posts", isAuthenticated, getUserPosts);
-router.put("/update-bio", isAuthenticated, updateBio);
+router.put("/update-profile", isAuthenticated, updateProfile);
 
 module.exports = router;

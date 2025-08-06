@@ -7,7 +7,7 @@ import Navbar from "./components/Navbar.jsx";
 // Pages
 import Signup from "./pages/Signup.jsx";
 import Login from "./pages/Login.jsx";
-import Feed from "./pages/Feed.jsx";
+import Home from "./pages/Home.jsx"
 import Profile from "./pages/Profile.jsx";
 import CreatePost from "./pages/CreatePost.jsx";
 import NotFound from "./pages/NotFound.jsx";
@@ -19,7 +19,7 @@ const App = () => {
       <div className="p-4 md:p-8">
         <Routes>
           {/* Main App Pages */}
-          <Route path="/" element={<Feed />} />
+          <Route path="/" element={<Home />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/create-post" element={<CreatePost />} />
 

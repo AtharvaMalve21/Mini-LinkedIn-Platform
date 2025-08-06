@@ -35,10 +35,9 @@ export const UserContextProvider = ({ children }) => {
         }
     }
 
-
     useEffect(() => {
         fetchUserProfileDetails()
-    }, [user]);
+    }, []);
 
     return (
         <UserContext.Provider value={value}>
