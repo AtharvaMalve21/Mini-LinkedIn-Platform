@@ -11,16 +11,34 @@ exports.getUserProfile = async (req, res) => {
         message: "No User found.",
       });
     }
+    return res.status(200).json({
+      success: true,
+      data: user,
+    });
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: err.message,
+    });
+  }
+};
 
-    //find user posts
-    const posts = await Post.find({ author: userId }).populate("author");
+exports.getUserPosts = async (req, res) => {
+  try {
+    const userId = req.user._id;
+    const user = await User.findById(userId).select("-password");
+    if (!user) {
+      return res.status(400).json({
+        success: false,
+        message: "No User found.",
+      });
+    }
+
+    const posts = await Post.find({ author: userId });
 
     return res.status(200).json({
       success: true,
-      data: {
-        profile: user,
-        posts: posts,
-      },
+      data: posts,
     });
   } catch (err) {
     res.status(500).json({
@@ -32,7 +50,6 @@ exports.getUserProfile = async (req, res) => {
 
 exports.updateBio = async (req, res) => {
   try {
-    
     const userId = req.user._id;
     const { bio } = req.body;
 
